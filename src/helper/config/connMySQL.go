@@ -1,13 +1,12 @@
 package config
 
-
 import (
 	"database/sql"
 	"fmt"
-	"os"
-	"time"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
+	"os"
+	"time"
 )
 
 func ConnMySQL() (*sql.DB, error) {
@@ -21,7 +20,13 @@ func ConnMySQL() (*sql.DB, error) {
 	DB_NAME := os.Getenv("DB_NAME")
 	DB_HOST := os.Getenv("DB_HOST")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s", DB_USER, DB_PASSWORD, DB_HOST, DB_NAME)
+	dsn := fmt.Sprintf(
+		"%s:%s@tcp(%s)/%s?parseTime=true&charset=utf8mb4&loc=Local",
+		DB_USER,
+		DB_PASSWORD,
+		DB_HOST,
+		DB_NAME,
+	)
 
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
@@ -35,7 +40,6 @@ func ConnMySQL() (*sql.DB, error) {
 	if err := db.Ping(); err != nil {
 		return nil, fmt.Errorf("error pinging database: %w", err)
 	}
-
 
 	return db, nil
 }

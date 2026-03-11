@@ -1,7 +1,7 @@
 package dependencies
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/bchanona/Api_chombi.git/src/helper/config"
 	"github.com/bchanona/Api_chombi.git/src/users/application/usecases"
@@ -10,26 +10,24 @@ import (
 )
 
 var (
-	mySQL infrastructure.MySQL
+	mySQL *infrastructure.MySQL
 )
 
 func Init() {
-	db, err := config.ConnMySQL()
+    db, err := config.ConnMySQL()
+    if err != nil {
+        log.Fatal("Database connection error:", err)
+    }
 
-	if err != nil {
-		fmt.Println("Database connection error: ", err)
-		return
-	}
-
-	mySQL = *infrastructure.NewMySQL(db)
+    mySQL = infrastructure.NewMySQL(db)
 }
 
 func RegisterUserDependencies() *controllers.RegisterUserController {
-	useCase := usecases.NewRegisterUserUseCase(&mySQL)
+	useCase := usecases.NewRegisterUserUseCase(mySQL)
 	return controllers.NewRegisterUserController(useCase)
 }
 
 func LoginUserDependencies() *controllers.LoginController {
-	useCase := usecases.NewLoginUserUseCase(&mySQL)
+	useCase := usecases.NewLoginUserUseCase(mySQL)
 	return controllers.NewLoginController(useCase)
 }
