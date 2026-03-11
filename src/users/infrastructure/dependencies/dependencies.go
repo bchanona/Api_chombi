@@ -13,7 +13,7 @@ var (
 	mySQL infrastructure.MySQL
 )
 
-func Init(){
+func Init() {
 	db, err := config.ConnMySQL()
 
 	if err != nil {
@@ -24,8 +24,12 @@ func Init(){
 	mySQL = *infrastructure.NewMySQL(db)
 }
 
-
-func RegisterUserDependencies() *controllers.RegisterUserController{
+func RegisterUserDependencies() *controllers.RegisterUserController {
 	useCase := usecases.NewRegisterUserUseCase(&mySQL)
 	return controllers.NewRegisterUserController(useCase)
+}
+
+func LoginUserDependencies() *controllers.LoginController {
+	useCase := usecases.NewLoginUserUseCase(&mySQL)
+	return controllers.NewLoginController(useCase)
 }

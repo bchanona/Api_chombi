@@ -5,12 +5,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func UserRoutes(router *gin.RouterGroup){
+func UserRoutes(router *gin.RouterGroup) {
 	routes := router.Group("/auth")
 
 	registerUserController := dependencies.RegisterUserDependencies().Execute
+	loginUserController := dependencies.LoginUserDependencies().Execute
 
-	routes.POST("/register",registerUserController)
-	
+	routes.POST("/register", registerUserController)
+	routes.POST("/login", loginUserController)
 
 }
