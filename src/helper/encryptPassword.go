@@ -1,0 +1,24 @@
+package helper
+
+import (
+
+
+	"golang.org/x/crypto/bcrypt"
+)
+
+func EncryptPassword(password string) (string, error) {
+	pass := []byte(password)
+
+	hash, err := bcrypt.GenerateFromPassword(pass, bcrypt.DefaultCost)
+
+	if err != nil {
+        panic(err)
+    }
+
+	return string(hash), nil
+}
+
+func ComparePassword(hashedPassword, password string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
+	return err == nil
+}
