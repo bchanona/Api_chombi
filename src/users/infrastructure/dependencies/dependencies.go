@@ -1,7 +1,6 @@
 package dependencies
 
 import (
-	"fmt"
 
 	"github.com/bchanona/Api_chombi.git/src/helper/config"
 	"github.com/bchanona/Api_chombi.git/src/users/application/usecases"
@@ -15,10 +14,8 @@ var (
 
 func Init() {
 	db, err := config.ConnMySQL()
-
 	if err != nil {
-		fmt.Println("Database connection error: ", err)
-		return
+		panic("database connection failed: " + err.Error())
 	}
 
 	mySQL = *infrastructure.NewMySQL(db)
