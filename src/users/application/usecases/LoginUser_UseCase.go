@@ -4,14 +4,14 @@ import (
 	"github.com/bchanona/Api_chombi.git/src/helper"
 	"github.com/bchanona/Api_chombi.git/src/users/domain/entities/User/input"
 	"github.com/bchanona/Api_chombi.git/src/users/domain/entities/User/output"
-	"github.com/bchanona/Api_chombi.git/src/users/domain/repository"
+	"github.com/bchanona/Api_chombi.git/src/users/domain/repositories"
 )
 
 type LoginUserUseCase struct {
-	db repository.IUserRepository
+	db repositories.IUserRepository
 }
 
-func NewLoginUserUseCase(db repository.IUserRepository) *LoginUserUseCase {
+func NewLoginUserUseCase(db repositories.IUserRepository) *LoginUserUseCase {
 	return &LoginUserUseCase{db: db}
 }
 

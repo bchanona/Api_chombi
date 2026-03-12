@@ -5,7 +5,9 @@ import (
 
 	"github.com/bchanona/Api_chombi.git/src/helper/config"
 	userDependencies "github.com/bchanona/Api_chombi.git/src/users/infrastructure/dependencies"
+	vehicleDependencies "github.com/bchanona/Api_chombi.git/src/vehicles/infrastructure/dependencies"
 	userRoutes "github.com/bchanona/Api_chombi.git/src/users/infrastructure/routes"
+	vehicleRoutes "github.com/bchanona/Api_chombi.git/src/vehicles/infrastructure/routes"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,6 +15,7 @@ func main() {
 	
 	//Inicializar dependencias
 	userDependencies.Init()
+	vehicleDependencies.Init()
 
 	//Configurar router
 	r := gin.Default()
@@ -25,6 +28,7 @@ func main() {
 	v2 := api.Group("/v2")
 
 	userRoutes.UserRoutes(v2)
+	vehicleRoutes.VehicleRoutes(v2)
 	
 	//Iniciar servidor
 	err := r.Run(":8080")

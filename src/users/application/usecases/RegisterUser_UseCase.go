@@ -3,14 +3,14 @@ package usecases
 import (
 	"github.com/bchanona/Api_chombi.git/src/helper"
 	"github.com/bchanona/Api_chombi.git/src/users/domain/entities/User/input"
-	"github.com/bchanona/Api_chombi.git/src/users/domain/repository"
+	"github.com/bchanona/Api_chombi.git/src/users/domain/repositories"
 )
 
 type RegisterUserUseCase struct {
-	db repository.IUserRepository
+	db repositories.IUserRepository
 }
 
-func NewRegisterUserUseCase(db repository.IUserRepository) *RegisterUserUseCase {
+func NewRegisterUserUseCase(db repositories.IUserRepository) *RegisterUserUseCase {
 	return &RegisterUserUseCase{db: db}
 }
 
