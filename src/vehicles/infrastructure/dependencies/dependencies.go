@@ -37,3 +37,8 @@ func RegisterVehicleDependencies() *controllers.RegisterVehicleController {
 
 	return controllers.NewRegisterVehicleController(useCase)
 }
+
+func GetVehiclesByUserIdDependencies() *controllers.GetVehicleHistoryController {
+	useCase := usecases.NewGetVehicleHistoryUseCase(&mySQL)
+	return controllers.NewGetVehicleHistoryController(useCase)
+}

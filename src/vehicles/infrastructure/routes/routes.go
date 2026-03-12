@@ -11,10 +11,17 @@ func VehicleRoutes(router *gin.RouterGroup) {
 	routes := router.Group("/vehicles")
 
 	registerVehicleController := dependencies.RegisterVehicleDependencies()
+	getVehicleHistoryController := dependencies.GetVehiclesByUserIdDependencies()
 
 	routes.POST(
 		"/",
 		middlewares.AuthMiddleware(),
 		registerVehicleController.Execute,
 	)
+	routes.GET(
+		"/history",
+		middlewares.AuthMiddleware(),
+		getVehicleHistoryController.Execute,
+	)
+
 }
