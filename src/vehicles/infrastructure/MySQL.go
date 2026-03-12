@@ -54,3 +54,33 @@ func (sql *MySQL) GetVehiclesByUserId(userId string) ([]output.VehicleShiftHisto
 	return vehicleShiftHistory, nil
 
 }
+
+func (sql *MySQL) GetVehicles(userId string) ([]output.VehicleResponse, error) {
+	rows, err := sql.db.Query(queries.GetAllVehiclesQuery, userId)
+
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var vehicles []output.VehicleResponse
+
+	for rows.Next(){
+		var vehicle output.VehicleResponse
+		err := rows.Scan(
+			&vehicle.Id,
+			&vehicle.LicensePlate,
+			&vehicle.UnitNumber,
+			&vehicle.Shift,
+			&vehicle.IsWorking,
+			&vehicle.ImageURL,
+			&vehicle.Model,
+			&vehicle.DriverName,
+		)
+		if err != nil {
+			return nil, err
+		}
+		vehicles = append(vehicles, vehicle)
+	}
+	return vehicles, nil
+}

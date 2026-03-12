@@ -23,5 +23,10 @@ func VehicleRoutes(router *gin.RouterGroup) {
 		middlewares.AuthMiddleware(),
 		getVehicleHistoryController.Execute,
 	)
+	routes.GET(
+		"/",
+		middlewares.AuthMiddleware(),
+		dependencies.GetVehiclesDependencies().Execute,
+	)
 
 }

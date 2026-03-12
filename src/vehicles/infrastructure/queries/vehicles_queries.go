@@ -27,6 +27,20 @@ const (
 			?
 		)
 	`
+	
+	GetAllVehiclesQuery = ` 
+	SELECT 
+		BIN_TO_UUID(v.id) AS id,
+		v.licensePlate,
+		v.unitNumber,
+		v.shift,
+		v.isWorking,
+		v.image_url,
+		v.model,
+		v.driver_name
+		FROM Vehicles v
+		WHERE v.user_id = UUID_TO_BIN(?);
+	`
 
 	GetAllVehicleShiftHistory = `
 		SELECT

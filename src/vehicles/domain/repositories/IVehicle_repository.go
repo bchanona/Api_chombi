@@ -9,4 +9,5 @@ import (
 type IVehicleRepository interface {
 	RegisterVehicle(input.VehicleRequest) error
 	GetVehiclesByUserId(userId string)([]output.VehicleShiftHistory, error)
+	GetVehicles(userId string)([]output.VehicleResponse, error)
 }
