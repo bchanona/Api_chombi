@@ -28,5 +28,10 @@ func VehicleRoutes(router *gin.RouterGroup) {
 		middlewares.AuthMiddleware(),
 		dependencies.GetVehiclesDependencies().Execute,
 	)
+	routes.POST(
+		"/history",
+		middlewares.AuthMiddleware(),
+		dependencies.RegisterVehicleShiftHistoryDependencies().Execute,
+	)
 
 }

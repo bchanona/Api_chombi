@@ -84,3 +84,13 @@ func (sql *MySQL) GetVehicles(userId string) ([]output.VehicleResponse, error) {
 	}
 	return vehicles, nil
 }
+
+func (sql *MySQL) RegisterVehicleShiftHistory() error {
+	_, err := sql.db.Exec(queries.RegisterVehicleShiftHistory)
+	
+	if err != nil {
+		return err
+	}
+	return nil
+
+}

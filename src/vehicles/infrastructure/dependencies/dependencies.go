@@ -47,3 +47,8 @@ func GetVehiclesDependencies() *controllers.GetVehiclesController {
 	useCase := usecases.NewGetVehiclesUseCase(&mySQL)
 	return controllers.NewGetVehiclesController(useCase)
 }
+
+func RegisterVehicleShiftHistoryDependencies() *controllers.RegisterVehicleHistoryController {
+	useCase := usecases.NewRegisterVehicleHistoryUseCase(&mySQL)
+	return controllers.NewRegisterVehicleHistoryController(useCase)
+}
