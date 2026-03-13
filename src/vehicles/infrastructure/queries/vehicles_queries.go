@@ -41,7 +41,22 @@ const (
 		FROM Vehicles v
 		WHERE v.user_id = UUID_TO_BIN(?);
 	`
+	RegisterVehicleShiftHistory = `
+	INSERT INTO vehicle_shift_history (
+    	id,
+    	vehicle_id,
+    	shift_order,
+    	snapshot_date
+	)
+	SELECT
+	UUID_TO_BIN(UUID()),
+	id,
+	shift,
+	CURDATE()
+	FROM Vehicles;
 
+	`
+	
 	GetAllVehicleShiftHistory = `
 		SELECT
 			BIN_TO_UUID(v.id) AS vehicle_id,
@@ -57,4 +72,5 @@ const (
 			h.snapshot_date DESC,
 			h.shift_order ASC
 	`
+
 )
