@@ -25,3 +25,17 @@ func (s *CloudinaryService) UploadImage(file multipart.File, fileName string) (s
 
 	return resp.SecureURL, nil
 }
+
+func (s *CloudinaryService)UploadPdf(file multipart.File, fileName string) (string, error) {
+	cld := config.InitCloudinary()
+	
+	resp, err := cld.Upload.Upload(context.Background(), file, uploader.UploadParams{
+		PublicID: fileName,
+		Folder:   "pdfs",
+		ResourceType: "raw",
+	})
+	if err != nil {
+		return "", err
+	}
+	return resp.SecureURL, nil
+}

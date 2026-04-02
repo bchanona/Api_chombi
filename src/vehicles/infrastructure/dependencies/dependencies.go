@@ -52,3 +52,7 @@ func RegisterVehicleShiftHistoryDependencies() *controllers.RegisterVehicleHisto
 	useCase := usecases.NewRegisterVehicleHistoryUseCase(&mySQL)
 	return controllers.NewRegisterVehicleHistoryController(useCase)
 }
+func UploadPdfDependencies() *controllers.UploadPdfController {
+	useCase := usecases.NewUploadPdfUseCase(&cloudinaryService)
+	return controllers.NewUploadPdfController(useCase)
+}
