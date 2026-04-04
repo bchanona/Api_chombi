@@ -33,5 +33,10 @@ func VehicleRoutes(router *gin.RouterGroup) {
 		middlewares.AuthMiddleware(),
 		dependencies.RegisterVehicleShiftHistoryDependencies().Execute,
 	)
+	routes.POST(
+		"/upload-pdf",
+		middlewares.AuthMiddleware(),
+		dependencies.UploadPdfDependencies().Execute,
+	)
 
 }
