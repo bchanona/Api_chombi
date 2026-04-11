@@ -9,11 +9,13 @@ Chombi es una solución integral para operadores de transporte que necesitan ras
 ## ✨ Características Implementadas
 
 ### Autenticación y Usuarios
+
 - ✅ **Registro de Usuarios** - Crear nuevas cuentas con email y contraseña encriptada
 - ✅ **Login de Usuarios** - Autenticación segura con JWT
 - ✅ **Middleware de Autenticación** - Protección de endpoints con tokens JWT
 
 ### Gestión de Vehículos
+
 - ✅ **Registrar Vehículos** - Crear nuevos registros de combis
 - ✅ **Listar Vehículos** - Obtener todos los vehículos registrados
 - ✅ **Obtener Vehículo por Número de Unidad** - Búsqueda específica de combis
@@ -21,12 +23,14 @@ Chombi es una solución integral para operadores de transporte que necesitan ras
 - ✅ **Eliminar Vehículos** - Remover registros de vehículos
 
 ### Gestión de Históricos y Turnos
+
 - ✅ **Registrar Historiales de Turnos** - Documentar llegadas a terminales
 - ✅ **Obtener Histórico de Vehículos** - Ver todos los turnos registrados
 - ✅ **Obtener Histórico por Fecha** - Filtrar turnos por rango de fechas
 - ✅ **Carga de Documentos PDF** - Subir archivos a Cloudinary
 
 ### Infraestructura
+
 - ✅ **Base de Datos MySQL** - Persistencia de datos
 - ✅ **CORS Configurado** - Soporte para múltiples orígenes
 - ✅ **Cloudinary Integration** - Almacenamiento de archivos en la nube
