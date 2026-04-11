@@ -38,5 +38,25 @@ func VehicleRoutes(router *gin.RouterGroup) {
 		middlewares.AuthMiddleware(),
 		dependencies.UploadPdfDependencies().Execute,
 	)
+	routes.PUT(
+		"/:vehicleId",
+		middlewares.AuthMiddleware(),
+		dependencies.UpdateVehicleDependencies().Execute,
+	)
+	routes.DELETE(
+		"/:vehicleId",
+		middlewares.AuthMiddleware(),
+		dependencies.DeleteVehicleDependencies().Execute,
+	)
+	routes.GET(
+		"/by-unit/:unitNumber",
+		middlewares.AuthMiddleware(),
+		dependencies.GetVehicleByUnitNumberDependencies().Execute,
+	)
+	routes.GET(
+		"/history/by-date/:date",
+		middlewares.AuthMiddleware(),
+		dependencies.GetVehicleHistoryByDateDependencies().Execute,
+	)
 
 }
