@@ -12,3 +12,11 @@ type VehicleRequest struct {
 	ImageURL           string `json:"image_url" form:"image_url"`
 	UserId             string `json:"user_id"`
 }
+
+type UpdateVehicleRequest struct {
+	DriverName         string `json:"driver_name" form:"driver_name" binding:"required"`
+	LicensePlate       string `json:"license_plate" form:"license_plate" binding:"required"`
+	Model              string `json:"model" form:"model" binding:"required"`
+	UnitNumber         int    `json:"unit_number" form:"unit_number" binding:"required"`
+	ImageURL           *string `json:"image_url" form:"image_url"`
+}
