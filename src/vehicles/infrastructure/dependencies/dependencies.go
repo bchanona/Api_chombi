@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	mySQL              infrastructure.MySQL
-	cloudinaryService  services.CloudinaryService
+	mySQL             infrastructure.MySQL
+	cloudinaryService services.CloudinaryService
 )
 
 func Init() {
@@ -55,4 +55,23 @@ func RegisterVehicleShiftHistoryDependencies() *controllers.RegisterVehicleHisto
 func UploadPdfDependencies() *controllers.UploadPdfController {
 	useCase := usecases.NewUploadPdfUseCase(&cloudinaryService)
 	return controllers.NewUploadPdfController(useCase)
+}
+func UpdateVehicleDependencies() *controllers.UpdateVehicleController {
+	useCase := usecases.NewUpdateVehicleUseCase(&mySQL)
+	return controllers.NewUpdateVehicleController(useCase)
+}
+
+func DeleteVehicleDependencies() *controllers.DeleteVehicleController {
+	useCase := usecases.NewDeleteVehicleUseCase(&mySQL)
+	return controllers.NewDeleteVehicleController(useCase)
+}
+
+func GetVehicleByUnitNumberDependencies() *controllers.GetVehicleByUnitNumberController {
+	useCase := usecases.NewGetVehicleByUnitNumberUseCase(&mySQL)
+	return controllers.NewGetVehicleByUnitNumberController(useCase)
+}
+
+func GetVehicleHistoryByDateDependencies() *controllers.GetVehicleHistoryByDateController {
+	useCase := usecases.NewGetVehicleHistoryByDateUseCase(&mySQL)
+	return controllers.NewGetVehicleHistoryByDateController(useCase)
 }

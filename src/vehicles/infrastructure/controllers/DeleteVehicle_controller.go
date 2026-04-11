@@ -1,0 +1,37 @@
+package controllers
+
+import (
+	"github.com/bchanona/Api_chombi.git/src/vehicles/application/usecases"
+	"github.com/gin-gonic/gin"
+)
+
+type DeleteVehicleController struct {
+	DeleteVehicleUseCase *usecases.DeleteVehicleUseCase
+}
+
+func NewDeleteVehicleController(deleteVehicleUseCase *usecases.DeleteVehicleUseCase) *DeleteVehicleController {
+	return &DeleteVehicleController{DeleteVehicleUseCase: deleteVehicleUseCase}
+}
+
+func (ctrl *DeleteVehicleController) Execute(ctx *gin.Context) {
+
+	userdId, exists := ctx.Get("id")
+	if !exists {
+		ctx.JSON(401, gin.H{"error": "User ID not found in token"})
+		return
+	}
+
+	vehicleId := ctx.Param("vehicleId")
+	if vehicleId == "" {
+		ctx.JSON(400, gin.H{"error": "Vehicle ID is required"})
+		return
+	}
+
+	err := ctrl.DeleteVehicleUseCase.Execute(userdId.(string), vehicleId)
+	if err != nil {
+		ctx.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	ctx.JSON(200, gin.H{"message": "Vehicle deleted successfully"})
+
+}
