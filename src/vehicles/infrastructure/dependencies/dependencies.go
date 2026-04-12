@@ -75,3 +75,7 @@ func GetVehicleHistoryByDateDependencies() *controllers.GetVehicleHistoryByDateC
 	useCase := usecases.NewGetVehicleHistoryByDateUseCase(&mySQL)
 	return controllers.NewGetVehicleHistoryByDateController(useCase)
 }
+func GetPdfDependencies() *controllers.GetPdfController {
+	useCase := usecases.NewGetUrlPdfUseCase(&cloudinaryService)
+	return controllers.NewGetPdfController(useCase)
+}
