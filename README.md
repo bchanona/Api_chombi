@@ -207,6 +207,7 @@ GET    /api/v2/vehicles/history/by-date/:date  - Obtener histórico por fecha
 
 ```
 POST   /api/v2/vehicles/upload-pdf    - Subir documento PDF
+GET    /api/v2/vehicles/pdf-urls.     - Retorna lista de URLs de archivos PDF
 ```
 
 ## 🏗 Estructura del Proyecto
