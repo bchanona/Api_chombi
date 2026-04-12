@@ -38,6 +38,11 @@ func VehicleRoutes(router *gin.RouterGroup) {
 		middlewares.AuthMiddleware(),
 		dependencies.UploadPdfDependencies().Execute,
 	)
+	routes.GET(
+		"/pdf-urls",
+		middlewares.AuthMiddleware(),
+		dependencies.GetPdfDependencies().Execute,
+	)
 	routes.PUT(
 		"/:vehicleId",
 		middlewares.AuthMiddleware(),
